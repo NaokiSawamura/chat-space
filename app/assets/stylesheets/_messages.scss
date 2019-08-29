@@ -63,7 +63,7 @@ a{
   overflow: scroll;
 }
 .group {
-  margin-bottom: 40px;
+  
   &__group-name{
     font-size: 15px;
     color: $white;
@@ -72,6 +72,7 @@ a{
   &__group-message{
     font-size: 11px;
     color: $white;
+    margin-bottom: 40px;
   }
 }
 .chat-main {
