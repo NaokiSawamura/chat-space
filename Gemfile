@@ -64,6 +64,7 @@ gem "font-awesome-rails"
 gem 'devise'
 gem 'pry-rails'
 gem 'carrierwave'
+gem 'fog-aws'
 gem 'mini_magick'
 gem 'jquery-turbolinks'
 
