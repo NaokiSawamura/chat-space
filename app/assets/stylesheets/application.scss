@@ -1,8 +1,11 @@
-@import "font-awesome";
+/*
+*= require_tree .
+*= require_self
+*/
 @import "reset";
-@import "messages";
-@import "variable";
-@import "group";
+@import "font-awesome";
 @import "modules/user";
-@import "config/colors";
 @import "modules/flash";
+@import "./messages";
+@import "./group";
+@import "variable";
