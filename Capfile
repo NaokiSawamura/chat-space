@@ -1,7 +1,6 @@
 # Load DSL and set up stages
-require "capistrano/setup"
-
 # Include default deployment tasks
+require "capistrano/setup"
 require "capistrano/deploy"
 require 'capistrano/rbenv'
 require 'capistrano/bundler'
