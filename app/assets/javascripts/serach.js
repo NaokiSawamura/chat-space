@@ -1,15 +1,19 @@
-$(function() {
+$(document).on("turbolinks:load", function() {
 
   function appendProduct(user) {
     var html = `<div class="chat-group-user clearfix">
-                  <p class="chat-group-user__name">${user.name}</p>
-                  <div class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</div>
+                  <p class="chat-group-user__name">${user.user_name}</p>
+                  <div class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.user_id}" data-user-name="${user.user_name}">追加</div>
                 </div>`
       $('.user_search_list').append(html);
   }
   
   $("#user-search-field").on("input", function() {
     var input = $("#user-search-field").val();
+    if (input.length === 0){
+      $(".user_search_list").empty();
+      preventDefault();
+    }
 
     $.ajax({
       type: 'GET',
@@ -19,15 +23,15 @@ $(function() {
     })
 
     .done(function(users) {
-      $(".listview.js-lazy-load-images").empty();
-      if (users.length !== 0) {
-        users.forEach(function(user){
-          appendProduct(user);
-        });
-      }
+      console.log(users)
+      $("#user-search-field").empty();
+      users.forEach (function (user){
+        var html = appendProduct(user);
+        $('.user_search_list').append(html);
+      });
     })
     .fail(function(user){
-      alert('エラーが発生したためメッセージは送信できませんでした。');
+      alert('ユーザー検索に失敗しました。');
     })
   });
   
@@ -43,10 +47,10 @@ $(function() {
     $(".chat-group-users").append(html);
   }    
   $(".user_search_list").on('click','.user-search-add', function(){
-    $(this).parent().remove()
-    $("#user-search-field").val();
     var name = $(this).data('user-name') ;
     var id = $(this).data('user-id') ;
+    $(this).parent().remove()
+    $("#user-search-field").val();
     addUser(name, id);
   });
   
