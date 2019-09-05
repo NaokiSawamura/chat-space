@@ -7,6 +7,13 @@ $(document).on("turbolinks:load", function() {
                 </div>`
       $('.user_search_list').append(html);
   }
+
+  function appendNoUser(user) {
+    var html = `<div class="chat-group-user clearfix">
+                  <p class="chat-group-user__name">${user}</p>
+                </div>`
+      $('.user_search_list').append(html);
+  }
   
   $("#user-search-field").on("input", function() {
     var input = $("#user-search-field").val();
@@ -24,10 +31,15 @@ $(document).on("turbolinks:load", function() {
 
     .done(function(users) {
       $(".user_search_list").empty();
-      users.forEach (function (user){
+        if (users.length !== 0) {
+        users.forEach (function (user){
         var html = appendProduct(user);
         $('.user_search_list').append(html);
-      });
+        });
+      }
+      else {
+        appendNoUser("一致するユーザーが見つかりません");
+      }
     })
     .fail(function(){
       alert('ユーザー検索に失敗しました。');
