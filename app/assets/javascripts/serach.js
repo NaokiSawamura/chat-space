@@ -23,14 +23,13 @@ $(document).on("turbolinks:load", function() {
     })
 
     .done(function(users) {
-      console.log(users)
-      $("#user-search-field").empty();
+      $(".user_search_list").empty();
       users.forEach (function (user){
         var html = appendProduct(user);
         $('.user_search_list').append(html);
       });
     })
-    .fail(function(user){
+    .fail(function(){
       alert('ユーザー検索に失敗しました。');
     })
   });
