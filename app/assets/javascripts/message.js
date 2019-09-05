@@ -38,10 +38,10 @@ $(document).on("turbolinks:load", function() {
       $('.new_message')[0].reset()
       $('.messages').animate({scrollTop:$('.messages')[0].scrollHeight}, 'fast')
     })
-    .fail(function(message){
+    .fail(function(){
       alert('エラーが発生したためメッセージは送信できませんでした。');
     })
-    .always(function(message){
+    .always(function(){
       $('.submit-btn').prop('disabled', false);
     })
   })
